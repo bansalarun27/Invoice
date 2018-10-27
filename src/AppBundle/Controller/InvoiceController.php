@@ -34,7 +34,6 @@ class InvoiceController extends Controller
             ->add('description', TextType::class)
             ->add('amount', TextType::class)
             ->add('vat_amount', TextType::class)
-            ->add('total_amount', TextType::class)
             ->add('invoice_date', DateType::class, array('widget' => 'single_text'))
             ->add('save', SubmitType::class, array('label' => 'Submit'))
             ->getForm();
@@ -50,7 +49,7 @@ class InvoiceController extends Controller
            $invoice_detail->setDescription($form["description"]->getData());
            $invoice_detail->setAmount($form["amount"]->getData());
            $invoice_detail->setVatAmount($form["vat_amount"]->getData());
-           $invoice_detail->setTotalAmount($form["total_amount"]->getData());
+           $invoice_detail->setTotalAmount($form["vat_amount"]->getData()+$form["amount"]->getData());
            
            $em=$this->getDoctrine()->getManager();
            $em->persist($invoice);
