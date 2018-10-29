@@ -1,24 +1,31 @@
-<style>
-.input{
+<table border="1">
+<tr>
+<th>ID</th>
+<th>Number</th>
+<th>Date</th>
+<th>Customer</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Description</th>
+<th>Amount</th>
+<th>Vat Amount</th>
+<th>Total Amount</th>
+<th>Action</th>
+</tr>
+{% for inv in invoice %}
+<tr>
+<td>{{inv.id}}</td>
+<td>{{inv.invoiceNumber}}</td>
+<td>{{inv.invoiceDate|date("d-m-Y")}}</td>
+<td>{{inv.email}}</td>
+<td>{{inv.firstName}}</td>
+<td>{{inv.lastName}}</td>
+<td>{{inv.description}}</td>
+<td>{{inv.amount}}</td>
+<td>{{inv.vatAmount}}</td>
+<td>{{inv.totalAmount}}</td>
+<td><a href="/invoice/form/{{inv.id}}">Edit</a></td>
+</tr>
+{% endfor %}
 
-	width:100%;
-}
-</style>
-<h4>Invoice</h4>
-<form action="" style="position:relative;border:solid 1px black;padding:10px;width:500px;">
-<input class="input" placeholder="Invoice date" type="date" name="date" >
-<br><br>
-<input class="input" placeholder="Invoice number" type="text" name="number">
-<br>
-<input class="input" value="5" type="hidden" name="customer">
-<br>
-<textarea class="input" name="Description" placeholder="Invoice Description"></textarea>
-<br><br>
-<input class="input" placeholder="Quantity" type="number" name="quantity">
-<br><br>
-<input class="input" placeholder="Amount" type="text" name="amount">
-<br><br>
-<input class="input" placeholder="Vat amount" type="text" name="vat_amount">
-<br><br>
-<input type="submit" name="submit">
-</form>
+</table>
